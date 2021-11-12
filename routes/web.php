@@ -11,4 +11,3 @@
 |
 */
 
-Route::get('/posts/{post}', 'PostController@show');
