@@ -7,9 +7,8 @@ use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
-    public function index(Post $post)
+    public function show(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
     }
     public function show(Post $post)
     {
