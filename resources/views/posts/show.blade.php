@@ -27,5 +27,6 @@
         <div class="footer">
             <a href="/">戻る</a>
         </div>
+        <div class='back'>[<a href='/'>back</a>]</div>
     </body>
 </html>
