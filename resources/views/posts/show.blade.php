@@ -9,11 +9,23 @@
         <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
-        <p class="edit">[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
-        <div class="post">
-            <h2 class='title'>{{ $post->title }}</h2>
-            <p class='body'>{{ $post->body }}</p>
-            <p class='updated_at'>{{ $post->updated_at }}</p>
+        <p class='edit'>[<a href="/posts/{{ $post->id }}/edit">edit</a>]</p>
+        <form action="/posts/{{ $post->id }}" id="form_{{ $post->id }}" method="post" style="display:inline">
+            @csrf
+            @method('DELETE')
+            <input type="submit" value="delete" class="delete" onclick='return confirm("本当に削除しますか？");'>
+        </form>
+        <h1 class="title">
+            {{ $post->title }}
+        </h1>
+        <div class="content">
+            <div class="content__post">
+                <h3>本文</h3>
+                <p>{{ $post->body }}</p>    
+            </div>
+        </div>
+        <div class="footer">
+            <a href="/">戻る</a>
         </div>
         <div class='back'>[<a href='/'>back</a>]</div>
     </body>
