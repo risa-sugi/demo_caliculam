@@ -1,6 +1,10 @@
 <!DOCTYPE html>
+@extends('layouts.app')
+    
+@section('content')
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
+        <p class='name'>{{ Auth::user()->name }}</p>
         <meta charset="utf-8">
         <title>Blog</title>
         <!-- Fonts -->
@@ -16,6 +20,7 @@
                         <a href="/posts/{{ $post->id }}">{{ $post->title }}</a>
                     </h2>
                     <p class='body'>{{ $post->body }}</p>
+                    <small>{{ $post->user->name }}</small>
                 </div>
             @endforeach
         </div>
@@ -24,3 +29,4 @@
         </div>
     </body>
 </html>
+@endsection

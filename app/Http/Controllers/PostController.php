@@ -9,7 +9,7 @@ class PostController extends Controller
 {
     public function index(Post $post)
     {
-        return view('posts/index')->with(['posts' => $post->getPaginate()]);
+        return view('posts/index')->with(['posts' => $post->getPaginateByLimit()]);
     }
     public function show(Post $post)
     {
@@ -21,10 +21,10 @@ class PostController extends Controller
     }
     public function store(PostRequest $request, Post $post)
     {
-        $input = $request['post'];
-        $post->create($input);
-        
-        return redirect('/posts/' . $post->id);
+         $input = $request['post'];
+         $input += ['user=id' => $request->user()->id];
+         //$post->fill($input)->save();
+         return redirect('/posts/' . $post->id);
     }
     public function edit(Post $post)
     {
@@ -33,17 +33,7 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $input_post = $request['post'];
-        $post->fill($input_post)->save();
-
-        return redirect('/posts/' . $post->id);
-    }
-    public function edit(Post $post)
-    {
-        return view('posts/edit')->with(['post' => $post]);
-    }
-    public function update(PostRequest $request, Post $post)
-    {
-        $input_post = $request['post'];
+        $input_post += ['user=id' => $request->user()->id];
         $post->fill($input_post)->save();
         return redirect('/posts/' . $post->id);
     }
