@@ -1,4 +1,7 @@
 <!DOCTYPE HTML>
+@extends('layouts.app')
+    
+@section('content')
 <html lang="{{ str_replace("_", "-", app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -18,6 +21,7 @@
         <h1 class="title">
             {{ $post->title }}
         </h1>
+        <small>{{ $post->user->name }}</small>
         <div class="content">
             <div class="content__post">
                 <h3>本文</h3>
@@ -30,3 +34,4 @@
         <div class='back'>[<a href='/'>back</a>]</div>
     </body>
 </html>
+@endsection
